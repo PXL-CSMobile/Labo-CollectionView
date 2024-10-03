@@ -4,51 +4,82 @@
              x:Class="MiniFigs.MainPage"
              Title="Lord Of The Rings">
 
-    <VerticalStackLayout>
-        <!--Add CollectionView here-->
-        <CollectionView>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <HorizontalStackLayout>
-                    
-                    </HorizontalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
-</ContentPage>
-
-
-<!--<Border Stroke="Black" StrokeThickness="1" Margin="2" Padding="2">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+        <!--Add CollectionView here-->
+        <RefreshView x:Name="refreshView">
+            <CollectionView SelectionMode="None" x:Name="charactersCollectionView" SelectionChanged="OnSelectionChanged" Grid.Row="0">
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="No data to display" HorizontalTextAlignment="Center" FontSize="Large"/>
+                            <Label Text="Click the load data button!" HorizontalTextAlignment="Center" FontSize="Large"/>
+                        </VerticalStackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem 
+                                       IconImageSource="star.svg"
+                                       Invoked="OnFavoriteSwipeItemInvoked" CommandParameter="{Binding Name}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                        
+                            <!-- Default content for DataTemplate comes here -->
+                            <Border Stroke="Black" StrokeThickness="1" Margin="2" Padding="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" 
-                                   Grid.Column="0" 
-                                   Grid.RowSpan="2"  
-                                   Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="60"
-                                   WidthRequest="60"/>
+                                    <Image Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       Grid.RowSpan="2"  
+                                       Source="{Binding ImageUrl}" 
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60"/>
 
-        <Label Text="{Binding Name}"
-                                   Grid.Row="0"
-                                   Grid.Column="1"
-                                   FontAttributes="Bold"
-                                   VerticalOptions="Center"/>
+                                    <Label Text="{Binding Name}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"/>
 
-        <Label Text="{Binding Race}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"
-                                   FontAttributes="Italic"
-                                   VerticalOptions="End"/>
+                                    <Label Text="{Binding Race}"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       FontAttributes="Italic"
+                                       VerticalOptions="End"/>
 
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <Label Text="Last refresh @ ..." x:Name="refreshLabel" HorizontalTextAlignment="Center" FontSize="Large" TextColor="LightGray"></Label>
+                </CollectionView.Footer>
+            </CollectionView>
+        </RefreshView>
+        <VerticalStackLayout Spacing="15" Margin="2" Padding="20" Grid.Row="1">
+            <BoxView BackgroundColor="{StaticResource Primary}" HeightRequest="2"/>
+            <Button Text="Load data" Clicked="OnLoadDataClicked"/>
+            <Button Text="Change selection mode" Clicked="OnChangeSelectionModeClicked"/>
+            <Label Text="" x:Name="selectionLabel" FontSize="Medium" TextColor="Orange"/>
+            <Label Text="" x:Name="favouriteLabel" FontSize="Medium" TextColor="Green"/>
+        </VerticalStackLayout>
     </Grid>
-</Border>-->
+</ContentPage>
+
