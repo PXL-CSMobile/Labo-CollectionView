@@ -167,4 +167,5 @@ public MainPage()
 <img src="media/refreshview.png" alt="refreshview" height="400">
 
 ## Bronnen
-- [Minifigures](https://www.brickowl.com/catalog/lego-minifigures/the-lord-of-the-rings)
+- [Minifigures](https://losseminifiguren.nl/product-categorie/the-lord-of-the-rings/)
+)
