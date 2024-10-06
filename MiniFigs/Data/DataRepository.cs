@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MiniFigs.Models;
 
-namespace MiniFigs.Services
+namespace MiniFigs.Data
 {
-    public class DataRepository
+    public static class DataRepository
     {
-        public List<MiniFig> GetAllCharacters()
+        public static List<MiniFig> GetAllCharacters()
         {
             return new List<MiniFig>
             {
